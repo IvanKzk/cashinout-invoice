@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)https://payeer.com/merchant/ -->
+<html class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Cashinout Merchant</title>
+<link rel="icon" type="image/x-icon" href="../icons/favicon.ico">
+
+
+<link rel="stylesheet" href="../css/jquery.formstyler.css">
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/nprogress.css">
+<link rel="stylesheet" href="../css//print.css" type="text/css" media="print">
+
+<link href="../css/merchant_logo.css" rel="stylesheet" type="text/css">
+    <link href="../css/style2.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery.scrollpane.js"></script>
+<script type="text/javascript" src="../js/jquery.formstyler.min.js"></script>
+<script type="text/javascript" src="../js/nprogress.js"></script>
+<script type="text/javascript" src="../js/jquery.form.min.js"></script>
+<script type="text/javascript" src="../js/confirmation.js"></script>
+<!--<script type="text/javascript" src="./Payeer® Merchant_files/script2.js"></script>
+<script type="text/javascript" src="./Payeer® Merchant_files/m2.js"></script>-->
+</head>
+<body style="">
+<div class="api_merchant">
+<style>
+.foot-half
+{
+   width: auto;
+}
+.to-right
+{
+    float: right;
+}
+.mfields .to-right input[type="text"]
+{
+   margin: 5px 20px 14px 0;
+   width: 200px;
+   float: right;
+   border-radius: 25px;
+}
+.to-right .confirm-button
+{
+   margin: 0 25px 0 25px;
+}
+</style>
+
+<div class="container">
+    <div class="underhead">
+        <div class="underhead__head"><span>Confirm</span></div>
+        <div class="underhead__from">Verify information and confirm invoice</div>
+    </div>
+    <div class="amount__info confirm-info">
+        
+        
+        <span class="general_error error"></span>
+
+        
+         
+        
+        
+
+        <ul class="confirm-data">
+            <li class="confirm-data__item">
+                <div class="info__name">Order ID:</div>
+                <div class="info__descr">[[${order_id}]]</div>
+                <div class="clr"></div>
+            </li>
+            <li class="confirm-data__item">
+                <div class="info__name">Amount:</div>
+                <div class="info__descr">[[${amount}]] USDT</div>
+                <div class="clr"></div>
+            </li>
+            <!--<li class="confirm-data__item">
+                <div class="info__name">Method of payment:</div>
+                <div class="info__descr">[[${selected_curr}]]</div>
+                <div class="clr"></div>
+            </li>-->
+                    </ul>
+        <div class="clr"></div>
+        <div class="line"></div>
+        <div class="info__result">
+            <div class="info__name">Method:</div>
+            <div class="info__descr">[[${selected_curr}]]</div>
+            <div class="clr"></div>
+        </div>
+            </div>
+    <div class="clr"></div>
+
+    
+    <div class="footer">
+        <div class="foot-half"></div>
+
+        <div class="foot-half to-right">
+            <button th:attr="onclick=|confirm('${order_id}')|"  class="c79e22 c005cb _4612cb d45b44" title="" data-cy="btn-confirm" data-v-5fa428fd=""><!----><span data-testid="ui-button__title">Confirm</span></button>
+        </div>
+        
+    </div>
+
+    <input type="hidden" name="ps" value="1000275788">
+    <input type="hidden" name="ps_curr" value="BTC">
+    <input type="hidden" name="inf" value="">
+    
+</div></form>
+
+
+</div>
+<script type="text/javascript">
+window.opener = null;
+$(document).ready(function()
+{
+
+});
+</script>
+
+
+</body></html>

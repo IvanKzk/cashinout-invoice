@@ -1,0 +1,55 @@
+.ps_logo_full_bnb
+{
+	background: url('../icons/bnb_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_trx
+{
+	background: url('../icons/trx_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_1000275788 
+{
+	background: url('../icons/btc_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_1070003802 
+{
+	background: url('../icons/eth_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_tether_trc20
+{
+	background: url('../icons/tether_trc20_icon.svg') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_tether_erc20
+{
+	background: url('../icons/tether_erc20_icon.svg') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_tether_bep20
+{
+	background: url('../icons/tether_erc20_icon.svg') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_618754627 
+{
+	background: url('../icons/ltc_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}

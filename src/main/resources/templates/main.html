@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)https://payeer.com/merchant/ -->
+<html class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Cashinout Merchant</title>
+<link rel="icon" type="image/x-icon" href="../icons/favicon.ico">
+
+<link rel="stylesheet" href="../css/jquery.formstyler.css">
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/nprogress.css">
+<link rel="stylesheet" href="../css/print.css" type="text/css" media="print">
+
+<link href="../css/merchant_logo.css" rel="stylesheet" type="text/css"><link href="../css/style2.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery.scrollpane.js"></script>
+<script type="text/javascript" src="../js/jquery.formstyler.min.js"></script>
+<script type="text/javascript" src="../js/nprogress.js"></script>
+<script type="text/javascript" src="../js/jquery.form.min.js"></script>
+<!--<script type="text/javascript" src="../css/script2.js"></script>
+<script type="text/javascript" src="../css/m2.js"></script>-->
+</head>
+<body style="">
+<div class="api_merchant"><script type="text/javascript">
+var aClick = false;
+</script>
+
+
+<div class="container">
+    <div class="underhead">
+        <div class="underhead__head"><span>invoice</span></div>
+    </div>
+    <div class="amount__info">
+        <div class="info__name">Recipient:</div>
+        <div class="info__descr" th:attr="onclick=|document.location = ${recipient_link} |" style=":hover {cursor: pointer}">[[${recipient}]]</div>
+        <div class="clr"></div>
+        <div class="clr"></div>
+        <div class="info__name">Order ID:</div>
+        <div class="info__descr">[[${order_id}]]</div>
+        <div class="clr"></div>
+		<div class="clr"></div>
+		<div class="info__name">Already paid:</div>
+		<div class="info__descr">[[${already_paid}]] USDT</div>
+		<div class="clr"></div>
+        <div th:if="${amount}" class="line"></div>
+        <div th:if="${amount}" class="info__result">
+            <div class="info__name">Amount:</div>
+            <div class="info__descr">[[${amount}]] USDT </div>
+            <div class="clr"></div>
+        </div>
+	 </div>
+
+    <div th:if="${not error}" class="slist">
+      <h2 class="hnew">Please choose the payment option below to pay this order:</h2>
+                     <style>
+            .slist ul.sectid184
+            {
+               margin: 0 0 0 -6px;
+            }
+            .slist ul.sectid184 li
+            {
+               transform: scale(0.7, 0.7);
+               margin: -11px -22px;
+            }
+            </style>
+            <ul>
+             	<!--<li onclick="myMerchant.detail(&#39;#pay-system-2609&#39;); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_2609"></div>
+			 			<div class="ps_name">Payeer</div>
+			 			<div class="ps_curr" id="pay-system-2609">
+			 				<form>
+				 													<label for="ps2609_USD" class="custom-label">
+										<input type="radio" class="curr" name="curr[2609]" id="ps2609_USD" value="USD">
+										<span class="">USD</span>
+									</label>
+																		<label for="ps2609_RUB" class="custom-label">
+										<input type="radio" class="curr" checked="" name="curr[2609]" id="ps2609_RUB" value="RUB">
+										<span class="">RUB</span>
+									</label>
+																		<label for="ps2609_EUR" class="custom-label">
+										<input type="radio" class="curr" name="curr[2609]" id="ps2609_EUR" value="EUR">
+										<span class="">EUR</span>
+									</label>
+																		<label for="ps2609_BTC" class="custom-label">
+										<input type="radio" class="curr" name="curr[2609]" id="ps2609_BTC" value="BTC">
+										<span class="">BTC</span>
+									</label>
+																	<input type="hidden" name="ps" value="2609">
+							</form>
+			 			</div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>-->
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=5&paymentSystem=trc20'">
+					<div class="tbl">
+						<div class="td">
+							<div class="ps_logo ps_logo_full_tether_trc20"></div>
+							<div>Tether TRC-20</div>
+						</div>
+					</div>
+				</li>
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=5&paymentSystem=erc20'">
+					<div class="tbl">
+						<div class="td">
+							<div class="ps_logo ps_logo_full_tether_erc20"></div>
+							<div>Tether ERC-20</div>
+						</div>
+					</div>
+				</li>
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=5&paymentSystem=bep20'">
+					<div class="tbl">
+						<div class="td">
+							<div class="ps_logo ps_logo_full_tether_bep20"></div>
+							<div style="white-space: pre-line">Tether&#10;BEP-20</div>
+						</div>
+					</div>
+				</li>
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=3'">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_1000275788"></div>
+							<div>Bitcoin</div>
+						</div>
+		 			</div>
+		 		</li>
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=9'">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_1070003802"></div>
+							<div>Ethereum</div>
+						</div>
+		 			</div>
+		 		</li>
+		 		<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=4'">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_618754627"></div>
+							<div>Litecoin</div>
+						</div>
+		 			</div>
+		 		</li>
+
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=8'">
+					<div class="tbl">
+						<div class="td">
+						<div class="ps_logo ps_logo_full_bnb"></div>
+							<div>BNB</div>
+						</div>
+					</div>
+				</li>
+
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=10'">
+					<div class="tbl">
+						<div class="td">
+						<div class="ps_logo ps_logo_full_trx"></div>
+							<div>TRX</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="tbl">
+						<div class="td">
+							<div class="ps_logo"></div>
+							<div></div>
+						</div>
+					</div>
+				</li>
+		 	</ul>
+               <div class="clear"></div>
+               <!--<h2>Through wallet:</h2>
+      	 		<ul class="sectid329">
+                     		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=how-to-pay&amp;lang=en&#39;; return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_20916096"></div>
+			 						 			<div class="ps_name">QIWI</div>
+			 			<div class="ps_curr" id="pay-system-20916096">
+			 				<form>
+				 													<label for="ps20916096_RUB" class="custom-label">
+										<input type="radio" class="curr" checked="" name="curr[20916096]" id="ps20916096_RUB" value="RUB">
+										<span class="">RUB</span>
+									</label>
+																	<input type="hidden" name="ps" value="20916096">
+							</form>
+			 			</div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=how-to-pay&amp;lang=en&#39;; return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_88106414"></div>
+			 						 			<div class="ps_name">Advcash</div>
+			 			<div class="ps_curr" id="pay-system-88106414">
+			 				<form>
+				 													<label for="ps88106414_USD" class="custom-label">
+										<input type="radio" class="curr" name="curr[88106414]" id="ps88106414_USD" value="USD">
+										<span class="">USD</span>
+									</label>
+																		<label for="ps88106414_RUB" class="custom-label">
+										<input type="radio" class="curr" checked="" name="curr[88106414]" id="ps88106414_RUB" value="RUB">
+										<span class="">RUB</span>
+									</label>
+																	<input type="hidden" name="ps" value="88106414">
+							</form>
+			 			</div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=how-to-pay&amp;lang=en&#39;; return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_26198507"></div>
+			 						 			<div class="ps_name">Perfect Money</div>
+			 			<div class="ps_curr" id="pay-system-26198507">
+			 				<form>
+				 													<label for="ps26198507_USD" class="custom-label">
+										<input type="radio" class="curr" checked="" name="curr[26198507]" id="ps26198507_USD" value="USD">
+										<span class="">USD</span>
+									</label>
+																		<label for="ps26198507_EUR" class="custom-label">
+										<input type="radio" class="curr" name="curr[26198507]" id="ps26198507_EUR" value="EUR">
+										<span class="">EUR</span>
+									</label>
+																	<input type="hidden" name="ps" value="26198507">
+							</form>
+			 			</div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=how-to-pay&amp;lang=en&#39;; return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_1730428175"></div>
+			 						 			<div class="ps_name">Epay</div>
+			 			<div class="ps_curr" id="pay-system-1730428175">
+			 				<form>
+				 													<label for="ps1730428175_USD" class="custom-label">
+										<input type="radio" class="curr" checked="" name="curr[1730428175]" id="ps1730428175_USD" value="USD">
+										<span class="">USD</span>
+									</label>
+																		<label for="ps1730428175_EUR" class="custom-label">
+										<input type="radio" class="curr" name="curr[1730428175]" id="ps1730428175_EUR" value="EUR">
+										<span class="">EUR</span>
+									</label>
+																	<input type="hidden" name="ps" value="1730428175">
+							</form>
+			 			</div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=trade&amp;lang=en&amp;ps=618751380&#39;; return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_618751380"></div>
+			 						 			<div class="ps_name">Bitcoin Cash</div>
+			 			<div class="ps_curr" id="pay-system-618751380">
+			 				<form>
+				 													<label for="ps618751380_BCH" class="custom-label">
+										<input type="radio" class="curr" checked="" name="curr[618751380]" id="ps618751380_BCH" value="BCH">
+										<span class="">BCH</span>
+									</label>
+																	<input type="hidden" name="ps" value="618751380">
+							</form>
+			 			</div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=trade&amp;lang=en&amp;ps=618755952&#39;; return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_618755952"></div>
+			 						 			<div class="ps_name">Dash</div>
+			 			<div class="ps_curr" id="pay-system-618755952">
+			 				<form>
+				 													<label for="ps618755952_DAA" class="custom-label">
+										<input type="radio" class="curr" checked="" name="curr[618755952]" id="ps618755952_DAA" value="DAA">
+										<span class="">DASH</span>
+									</label>
+																	<input type="hidden" name="ps" value="618755952">
+							</form>
+			 			</div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=trade&amp;lang=en&amp;ps=838184486&#39;; return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_838184486"></div>
+			 						 			<div class="ps_name">Ripple</div>
+			 			<div class="ps_curr" id="pay-system-838184486">
+			 				<form>
+				 													<label for="ps838184486_XRP" class="custom-label">
+										<input type="radio" class="curr" checked="" name="curr[838184486]" id="ps838184486_XRP" value="XRP">
+										<span class="">XRP</span>
+									</label>
+																	<input type="hidden" name="ps" value="838184486">
+							</form>
+			 			</div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=trade&amp;lang=en&amp;ps=1510515373&#39;; return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_1510515373"></div>
+			 						 			<div class="ps_name">Dogecoin</div>
+			 			<div class="ps_curr" id="pay-system-1510515373">
+			 				<form>
+				 													<label for="ps1510515373_DOG" class="custom-label">
+										<input type="radio" class="curr" checked="" name="curr[1510515373]" id="ps1510515373_DOG" value="DOG">
+										<span class="">DOGE</span>
+									</label>
+																	<input type="hidden" name="ps" value="1510515373">
+							</form>
+			 			</div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 		         	 		                                                </ul>
+               <div class="clear"></div>
+               <h2>Through exchangers:</h2>
+      	 		<ul class="sectid184">
+                     		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=exchanger&amp;lang=en&amp;ps=623090233&amp;curr=&#39; + $(&#39;#pay-system-623090233 input.curr:checked&#39;).val(); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_623090233"></div>
+			 			                                          <div class="ps_name">VISA</div>
+                     <div class="ps_curr" id="pay-system-623090233">
+                                                <label for="ps623090233_USD" class="custom-label">
+                           <input type="radio" class="curr" name="curr[623090233]" id="ps623090233_USD" value="USD">
+                           <span class="">USD</span>
+                        </label>
+                                                <label for="ps623090233_RUB" class="custom-label">
+                           <input type="radio" class="curr" checked="" name="curr[623090233]" id="ps623090233_RUB" value="RUB">
+                           <span class="">RUB</span>
+                        </label>
+                                                <label for="ps623090233_EUR" class="custom-label">
+                           <input type="radio" class="curr" name="curr[623090233]" id="ps623090233_EUR" value="EUR">
+                           <span class="">EUR</span>
+                        </label>
+                                             </div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=exchanger&amp;lang=en&amp;ps=64414610&amp;curr=&#39; + $(&#39;#pay-system-64414610 input.curr:checked&#39;).val(); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_64414610"></div>
+			 			                                          <div class="ps_name">Master<wbr>Card</div>
+                     <div class="ps_curr" id="pay-system-64414610">
+                                                <label for="ps64414610_USD" class="custom-label">
+                           <input type="radio" class="curr" name="curr[64414610]" id="ps64414610_USD" value="USD">
+                           <span class="">USD</span>
+                        </label>
+                                                <label for="ps64414610_RUB" class="custom-label">
+                           <input type="radio" class="curr" checked="" name="curr[64414610]" id="ps64414610_RUB" value="RUB">
+                           <span class="">RUB</span>
+                        </label>
+                                                <label for="ps64414610_EUR" class="custom-label">
+                           <input type="radio" class="curr" name="curr[64414610]" id="ps64414610_EUR" value="EUR">
+                           <span class="">EUR</span>
+                        </label>
+                                             </div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=exchanger&amp;lang=en&amp;ps=857516217&amp;curr=&#39; + $(&#39;#pay-system-857516217 input.curr:checked&#39;).val(); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_857516217"></div>
+			 			                                          <div class="ps_name">MIR</div>
+                     <div class="ps_curr" id="pay-system-857516217">
+                                                <label for="ps857516217_RUB" class="custom-label">
+                           <input type="radio" class="curr" checked="" name="curr[857516217]" id="ps857516217_RUB" value="RUB">
+                           <span class="">RUB</span>
+                        </label>
+                                             </div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=exchanger&amp;lang=en&amp;ps=623101913&amp;curr=&#39; + $(&#39;#pay-system-623101913 input.curr:checked&#39;).val(); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_623101913"></div>
+			 			                                          <div class="ps_name">Sberbank</div>
+                     <div class="ps_curr" id="pay-system-623101913">
+                                                <label for="ps623101913_RUB" class="custom-label">
+                           <input type="radio" class="curr" checked="" name="curr[623101913]" id="ps623101913_RUB" value="RUB">
+                           <span class="">RUB</span>
+                        </label>
+                                                <label for="ps623101913_KZT" class="custom-label">
+                           <input type="radio" class="curr" name="curr[623101913]" id="ps623101913_KZT" value="KZT">
+                           <span class="">KZT</span>
+                        </label>
+                                             </div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=exchanger&amp;lang=en&amp;ps=65476069&amp;curr=&#39; + $(&#39;#pay-system-65476069 input.curr:checked&#39;).val(); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_65476069"></div>
+			 			                                          <div class="ps_name">Alfa-Bank</div>
+                     <div class="ps_curr" id="pay-system-65476069">
+                                                <label for="ps65476069_RUB" class="custom-label">
+                           <input type="radio" class="curr" checked="" name="curr[65476069]" id="ps65476069_RUB" value="RUB">
+                           <span class="">RUB</span>
+                        </label>
+                                             </div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=exchanger&amp;lang=en&amp;ps=622793483&amp;curr=&#39; + $(&#39;#pay-system-622793483 input.curr:checked&#39;).val(); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_622793483"></div>
+			 			                                          <div class="ps_name">Raiffeisen</div>
+                     <div class="ps_curr" id="pay-system-622793483">
+                                                <label for="ps622793483_RUB" class="custom-label">
+                           <input type="radio" class="curr" checked="" name="curr[622793483]" id="ps622793483_RUB" value="RUB">
+                           <span class="">RUB</span>
+                        </label>
+                                                <label for="ps622793483_UAH" class="custom-label">
+                           <input type="radio" class="curr" name="curr[622793483]" id="ps622793483_UAH" value="UAH">
+                           <span class="">UAH</span>
+                        </label>
+                                             </div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=exchanger&amp;lang=en&amp;ps=65018333&amp;curr=&#39; + $(&#39;#pay-system-65018333 input.curr:checked&#39;).val(); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_65018333"></div>
+			 			                                          <div class="ps_name">Privat24</div>
+                     <div class="ps_curr" id="pay-system-65018333">
+                                                <label for="ps65018333_UAH" class="custom-label">
+                           <input type="radio" class="curr" checked="" name="curr[65018333]" id="ps65018333_UAH" value="UAH">
+                           <span class="">UAH</span>
+                        </label>
+                                             </div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=exchanger&amp;lang=en&amp;ps=857508052&amp;curr=&#39; + $(&#39;#pay-system-857508052 input.curr:checked&#39;).val(); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_857508052"></div>
+			 			                                          <div class="ps_name">Tinkoff</div>
+                     <div class="ps_curr" id="pay-system-857508052">
+                                                <label for="ps857508052_RUB" class="custom-label">
+                           <input type="radio" class="curr" checked="" name="curr[857508052]" id="ps857508052_RUB" value="RUB">
+                           <span class="">RUB</span>
+                        </label>
+                                             </div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=exchanger&amp;lang=en&amp;ps=857529391&amp;curr=&#39; + $(&#39;#pay-system-857529391 input.curr:checked&#39;).val(); return false;">
+		 			<div class="tbl">
+			 			<div class="td">
+			 			<div class="ps_logo ps_logo_full_857529391"></div>
+			 			                                          <div class="ps_name">Kaspi Bank</div>
+                     <div class="ps_curr" id="pay-system-857529391">
+                                                <label for="ps857529391_KZT" class="custom-label">
+                           <input type="radio" class="curr" checked="" name="curr[857529391]" id="ps857529391_KZT" value="KZT">
+                           <span class="">KZT</span>
+                        </label>
+                                             </div>
+			 			 			 			</div>
+		 			</div>
+		 		</li>
+		 		         	 		                     </ul>
+            <div class="clear"></div>-->
+             </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function()
+{
+   $('.api_merchant div.slist > ul').each(function()
+   {
+      if (!$(this).children('li').length)
+      {
+         $(this).prev('h2').hide();
+         $(this).hide();
+      }
+   });
+});
+</script>
+</div>
+<script type="text/javascript">
+window.opener = null;
+
+$(document).ready(function()
+{
+
+});
+</script>
+
+
+</body></html>
