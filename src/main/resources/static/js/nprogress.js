@@ -1,3 +1,17 @@
+function cancelPayment(invoice_id, payment_id) {
+  fetch('https://test.api.cashinout.io/invoices/closeSession/'+payment_id, {
+    method: 'POST'
+  }).then(response => response.json())
+      .then(response => {
+        console.log(JSON.stringify(response))
+        const loc_without_https = document.location.href.replaceAll('https://', '').replaceAll('http://', '');
+        var protocol = 'http://'
+        if (document.location.href.includes('https://'))
+          protocol = 'https://'
+        document.location = protocol + loc_without_https.substring(0, loc_without_https.indexOf('/')+1)+invoice_id
+      })
+}
+
 function copyToClipboard(textToCopy) {
   // navigator clipboard api needs a secure context (https)
   if (navigator.clipboard && window.isSecureContext) {
@@ -22,12 +36,18 @@ function copyToClipboard(textToCopy) {
   }
 }
 
-function copy() {
-  var copyText = document.querySelector(".ade17f");
-  copyText.focus();
-  copyText.select();
-  copyText.setSelectionRange(0, 99999);
-  copyToClipboard(copyText.value)
+function copy(selector) {
+  const copyText = document.querySelector(selector);
+  try{
+    copyText.focus();
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+  }catch (e) {}
+
+  let copyValue = copyText.value;
+  if (copyValue === undefined)
+    copyValue = copyText.innerHTML
+  copyToClipboard(copyValue)
 }
 
 ;(function(factory) {

@@ -1,3 +1,38 @@
+.ps_logo_full_uah
+{
+	background: url('../icons/uah_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_eur
+{
+	background: url('../icons/eur_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_kzt
+{
+	background: url('../icons/kzt_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_usd
+{
+	background: url('../icons/usd_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
+.ps_logo_full_rub
+{
+	background: url('../icons/rub_icon.png') top left no-repeat;
+	width: 48px;
+	height: 48px;
+}
+
 .ps_logo_full_bnb
 {
 	background: url('../icons/bnb_icon.png') top left no-repeat;

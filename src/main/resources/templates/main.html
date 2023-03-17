@@ -17,6 +17,7 @@
 <script type="text/javascript" src="../js/jquery.formstyler.min.js"></script>
 <script type="text/javascript" src="../js/nprogress.js"></script>
 <script type="text/javascript" src="../js/jquery.form.min.js"></script>
+<script type="text/javascript" src="../js/confirmation.js"></script>
 <!--<script type="text/javascript" src="../css/script2.js"></script>
 <script type="text/javascript" src="../css/m2.js"></script>-->
 </head>
@@ -43,14 +44,21 @@ var aClick = false;
 		<div class="info__descr">[[${already_paid}]] USDT</div>
 		<div class="clr"></div>
         <div th:if="${amount}" class="line"></div>
-        <div th:if="${amount}" class="info__result">
+        <div th:if="${amount} and ${payment_status == 'open'}" class="info__result">
             <div class="info__name">Amount:</div>
             <div class="info__descr">[[${amount}]] USDT </div>
             <div class="clr"></div>
         </div>
+		<div th:if="${payment_status == 'succeeded'}" class="info__result">
+			<div class="info__name">Success</div>
+			<div class="info__descr">
+				<img src="../icons/success_icon.png" width="48" height="48">
+			</div>
+			<div class="clr"></div>
+		</div>
 	 </div>
 
-    <div th:if="${not error}" class="slist">
+    <div th:if="${not error} and ${payment_status == 'open'}" class="slist">
       <h2 class="hnew">Please choose the payment option below to pay this order:</h2>
                      <style>
             .slist ul.sectid184
@@ -93,7 +101,7 @@ var aClick = false;
 			 			 			 			</div>
 		 			</div>
 		 		</li>-->
-				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=5&paymentSystem=trc20'">
+				<li th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 5, 'trc20')|">
 					<div class="tbl">
 						<div class="td">
 							<div class="ps_logo ps_logo_full_tether_trc20"></div>
@@ -101,7 +109,7 @@ var aClick = false;
 						</div>
 					</div>
 				</li>
-				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=5&paymentSystem=erc20'">
+				<li th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 5, 'erc20')|">
 					<div class="tbl">
 						<div class="td">
 							<div class="ps_logo ps_logo_full_tether_erc20"></div>
@@ -109,7 +117,7 @@ var aClick = false;
 						</div>
 					</div>
 				</li>
-				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=5&paymentSystem=bep20'">
+				<li th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 5, 'bep20')|">
 					<div class="tbl">
 						<div class="td">
 							<div class="ps_logo ps_logo_full_tether_bep20"></div>
@@ -117,7 +125,7 @@ var aClick = false;
 						</div>
 					</div>
 				</li>
-				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=3'">
+				<li th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 3)|">
 		 			<div class="tbl">
 			 			<div class="td">
 			 			<div class="ps_logo ps_logo_full_1000275788"></div>
@@ -125,7 +133,7 @@ var aClick = false;
 						</div>
 		 			</div>
 		 		</li>
-				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=9'">
+				<li th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 9)|">
 		 			<div class="tbl">
 			 			<div class="td">
 			 			<div class="ps_logo ps_logo_full_1070003802"></div>
@@ -133,7 +141,7 @@ var aClick = false;
 						</div>
 		 			</div>
 		 		</li>
-		 		<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=4'">
+		 		<li th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 4)|">
 		 			<div class="tbl">
 			 			<div class="td">
 			 			<div class="ps_logo ps_logo_full_618754627"></div>
@@ -142,7 +150,7 @@ var aClick = false;
 		 			</div>
 		 		</li>
 
-				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=8'">
+				<li th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 8)|">
 					<div class="tbl">
 						<div class="td">
 						<div class="ps_logo ps_logo_full_bnb"></div>
@@ -151,7 +159,7 @@ var aClick = false;
 					</div>
 				</li>
 
-				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=10'">
+				<li th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 10)|">
 					<div class="tbl">
 						<div class="td">
 						<div class="ps_logo ps_logo_full_trx"></div>
@@ -159,6 +167,7 @@ var aClick = false;
 						</div>
 					</div>
 				</li>
+
 				<li>
 					<div class="tbl">
 						<div class="td">
@@ -168,7 +177,50 @@ var aClick = false;
 					</div>
 				</li>
 		 	</ul>
-               <div class="clear"></div>
+			<div class="clear"></div>
+			<h2>Through bank card: </h2>
+			<ul>
+				<li th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 0)|">
+					<div class="tbl">
+						<div class="td">
+							<div class="ps_logo  ps_logo_full_rub"></div>
+							<div>RUB</div>
+						</div>
+					</div>
+				</li>
+				<!--<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=1'">
+					<div class="tbl">
+						<div class="td">
+							<div class="ps_logo ps_logo_full_uah"></div>
+							<div>UAH</div>
+						</div>
+					</div>
+				</li>
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=2'">
+					<div class="tbl">
+						<div class="td">
+							<div class="ps_logo ps_logo_full_kzt"></div>
+							<div>KZT</div>
+						</div>
+					</div>
+				</li>
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=6'">
+					<div class="tbl">
+						<div class="td">
+							<div class="ps_logo ps_logo_full_eur"></div>
+							<div>EUR</div>
+						</div>
+					</div>
+				</li>
+				<li onclick="document.location = document.location.href.substring(0, (document.location.href.indexOf('?') == -1) ? document.location.href.length : document.location.href.indexOf('?'))+'?selected_cur=7'">
+					<div class="tbl">
+						<div class="td">
+							<div class="ps_logo ps_logo_full_usd"></div>
+							<div>USD</div>
+						</div>
+					</div>
+				</li>-->
+			</ul>
                <!--<h2>Through wallet:</h2>
       	 		<ul class="sectid329">
                      		 				 		<li onclick="document.location = &#39;/merchant/?m_shop=1410805011&amp;m_orderid=577452342&amp;m_amount=10000.00&amp;m_curr=RUB&amp;m_desc=0J/Qu9Cw0YLRkdC2INC00LvRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8gNTc3NDUyMzQy&amp;m_sign=1FB0388AB9C97A735F622DA5B3E48D2C4B9A510ACBEE54F70823282854EB3DE3&amp;action=how-to-pay&amp;lang=en&#39;; return false;">

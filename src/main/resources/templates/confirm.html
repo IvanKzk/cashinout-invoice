@@ -68,9 +68,9 @@
                 <div class="info__descr">[[${order_id}]]</div>
                 <div class="clr"></div>
             </li>
-            <li class="confirm-data__item">
+            <li th:if="${amount}" class="confirm-data__item">
                 <div class="info__name">Amount:</div>
-                <div class="info__descr">[[${amount}]] USDT</div>
+                <div  class="info__descr">[[${amount}]] USDT</div>
                 <div class="clr"></div>
             </li>
             <!--<li class="confirm-data__item">
@@ -94,7 +94,7 @@
         <div class="foot-half"></div>
 
         <div class="foot-half to-right">
-            <button th:attr="onclick=|confirm('${order_id}')|"  class="c79e22 c005cb _4612cb d45b44" title="" data-cy="btn-confirm" data-v-5fa428fd=""><!----><span data-testid="ui-button__title">Confirm</span></button>
+            <button th:attr="onclick=|confirm('${order_id}', '${invoice_type}')|"  class="c79e22 c005cb _4612cb d45b44" title="" data-cy="btn-confirm" data-v-5fa428fd=""><!----><span data-testid="ui-button__title">Confirm</span></button>
         </div>
         
     </div>
