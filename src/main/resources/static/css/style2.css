@@ -139,7 +139,6 @@ a {
 }
 input {
     outline: none;
-    border: 2px solid #CDCDCD;
     border-radius: 5px;
     padding: 7px 9px;
     font-size: 14px;

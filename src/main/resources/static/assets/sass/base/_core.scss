@@ -1,0 +1,67 @@
+/*CORE STYLES*/
+@import "mixins";
+
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Gilroy', sans-serif;
+  font-weight: normal;
+  line-height: 130%;
+  background-color: #F2F6FF;
+  overflow-x: hidden;
+  position: relative;
+  font-variant: normal;
+  font-feature-settings: normal;
+  margin: 0;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+html, body, #__nuxt, #__layout {
+  height: 100%;
+}
+
+.wrapper {
+  position:relative;
+  min-height: 100%;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.content {
+  margin: 100px 0;
+
+  @media (max-width: 576px) {
+    margin: 40px 0;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Gilroy', sans-serif;
+  margin: 0;
+}
+
+span, strong, small, sub, p, a {
+  font-family: 'Gilroy', sans-serif;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: 130%;
+  margin: 0;
+}
+
+button:disabled {
+  opacity: 0.2 !important;
+  cursor: auto;
+}

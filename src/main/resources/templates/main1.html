@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=0.4">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="../icons/favicon.ico">
+    <link href="../css/merchant_logo.css" rel="stylesheet" type="text/css"><link href="../css/style2.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/font/Montserrat/stylesheet.css">
+    <link rel="stylesheet" href="assets/sass/style.css">
+    <script type="text/javascript" src="../js/confirmation.js"></script>
+    <script type="text/javascript" src="../js/nprogress.js"></script>
+    <title>Cashinout Invoice</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="content">
+                <section class="invoice-wrap">
+                    <div class="invoice">
+                        <div class="invoice__title">
+                            <h1>Invoice</h1>
+                        </div>
+                        <div class="invoice__block" style="min-width: 600px">
+                            <!--<div class="invoice__block-title">
+                                <h2>For complete payment via ETH send exact amount</h2>
+                            </div>-->
+                            <div class="invoice__list">
+                                <div class="invoice__item">
+                                    <div class="invoice__name">
+                                        <span>Recipient:</span>
+                                    </div>
+                                    <div th:attr="onclick=|document.location = ${recipient_link} |" class="invoice__value">
+                                        <span>cashinout.io</span>
+                                    </div>
+                                </div>
+                                <div class="invoice__item">
+                                    <div class="invoice__name">
+                                        <span>Order ID</span>
+                                    </div>
+                                    <div class="invoice__value">
+                                        <span>[[${order_id}]]</span>
+                                    </div>
+                                </div>
+                                <div class="invoice__item">
+                                    <div class="invoice__name">
+                                        <span>Already paid: </span>
+                                    </div>
+                                    <div class="invoice__value">
+                                        <span>[[${already_paid}]] USDT</span>
+                                    </div>
+                                </div>
+                                <div th:if="${amount} and ${payment_status == 'open'}" class="invoice__item">
+                                    <div class="invoice__name">
+                                        <b>Amount</b>
+                                    </div>
+                                    <div class="invoice__value">
+                                        <b>[[${amount}]] USDT</b>
+                                    </div>
+                                </div>
+                                <div th:if="${payment_status == 'succeeded'}" class="invoice__item">
+                                    <div class="invoice__name">
+                                        <b style="font-size: 175%">Success</b>
+                                    </div>
+                                    <div class="invoice__value">
+                                        <img src="../icons/success_icon.png" width="48" height="48">
+                                    </div>
+                                </div>
+                                <div th:if="${payment_status == 'failed'}" class="invoice__item">
+                                    <div class="invoice__name">
+                                        <b style="font-size: 175%">Fail</b>
+                                    </div>
+                                    <div class="invoice__value">
+                                        <img src="../icons/fail_icon.png" width="48" height="48">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${not error} and ${payment_status == 'open'}" class="invoice__options-block">
+                            <div class="invoice__options-title">
+                                <h2>Please choose the payment option below to pay this order:</h2>
+                            </div>
+                            <div class="invoice__row">
+                                <div class="invoice__col" th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 5, 'trc20')|">
+                                    <div class="invoice__tile">
+                                        <div class="invoice__tile-img">
+                                            <img src="assets/img/money/usdt.png" alt="usdt">
+                                        </div>
+                                        <div class="invoice__tile-text">
+                                            <span>TETHER<br>TRC-20</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="invoice__col" th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 5, 'erc20')|">
+                                    <div class="invoice__tile">
+                                        <div class="invoice__tile-img">
+                                            <img src="assets/img/money/usdt.png" alt="usdt">
+                                        </div>
+                                        <div class="invoice__tile-text">
+                                            <span>TETHER<br>ERC-20</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="invoice__col" th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 5, 'bep20')|">
+                                    <div class="invoice__tile">
+                                        <div class="invoice__tile-img">
+                                            <img src="assets/img/money/usdt.png" alt="usdt">
+                                        </div>
+                                        <div class="invoice__tile-text">
+                                            <span>TETHER<br>BEP-20</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="invoice__col" th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 3)|">
+                                    <div class="invoice__tile">
+                                        <div class="invoice__tile-img">
+                                            <img src="assets/img/money/btc.png" alt="bitcoin">
+                                        </div>
+                                        <div class="invoice__tile-text">
+                                            <span>BITCOIN</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="invoice__col" th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 4)|">
+                                    <div class="invoice__tile">
+                                        <div class="invoice__tile-img">
+                                            <img src="assets/img/money/ltc.png" alt="litecoin">
+                                        </div>
+                                        <div class="invoice__tile-text">
+                                            <span>LITECION</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="invoice__col" th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 9)|">
+                                    <div class="invoice__tile">
+                                        <div class="invoice__tile-img">
+                                            <img src="assets/img/money/eth.png" alt="ethereum">
+                                        </div>
+                                        <div class="invoice__tile-text">
+                                            <span>ETHEREUM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="invoice__col" th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 8)|">
+                                    <div class="invoice__tile">
+                                        <div class="invoice__tile-img">
+                                            <img src="assets/img/money/bnb.png" alt="bnb">
+                                        </div>
+                                        <div class="invoice__tile-text">
+                                            <span>BNB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="invoice__col" th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 10)|">
+                                    <div class="invoice__tile">
+                                        <div class="invoice__tile-img">
+                                            <img src="assets/img/money/trx.png" alt="trx">
+                                        </div>
+                                        <div class="invoice__tile-text">
+                                            <span>TRX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="invoice__options-sub-title">
+                                <h3>Through bank card:</h3>
+                            </div>
+                            <div class="invoice__row">
+                                <div class="invoice__col" th:attr="onclick=|confirm('${order_id}', '${invoice_type}', 0)|">
+                                    <div class="invoice__tile">
+                                        <div class="invoice__tile-img">
+                                            <img src="assets/img/money/rub.png" alt="rub">
+                                        </div>
+                                        <div class="invoice__tile-text">
+                                            <span>RUB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

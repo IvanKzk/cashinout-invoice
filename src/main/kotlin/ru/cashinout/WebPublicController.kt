@@ -118,16 +118,7 @@ class WebPublicController {
 
             //model.addAttribute("selected_curr_amount", "10000") //TODO !!
             if(session == null) {
-                if (selected_cur == null) {
-                    return "main"
-                } else {
-                    val selected_cur_label = getSelectedCurLabel(selected_cur, paymentSystem)
-                    if (selected_cur_label != null) {
-                        model.addAttribute("selected_curr", selected_cur_label)
-                        return "confirm"
-
-                    } else return "main"
-                }
+                return "main1"
             } else {
                 if (!JSONObject.NULL.equals(session["limitAmount"])) model.addAttribute("selected_curr_amount", session["limitAmount"])
                 model.addAttribute("selected_curr", getSelectedCurLabel(session.getString("currency"), paymentSystem)) //TODO paymentSystem
@@ -142,14 +133,14 @@ class WebPublicController {
                     model.addAttribute("selected_curr_address", card["cardNumber"])
                     model.addAttribute("fullName", card["fullName"])
                 }
-                return "payment"
+                return "payment1"
             }
         }catch (e: Exception) {
             e.printStackTrace()
             model.addAttribute("order_id", "ERROR")
             model.addAttribute("amount", "ERROR")
             model.addAttribute("error", true)
-            return "main"
+            return "main1"
         }
     }
 }

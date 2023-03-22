@@ -1,0 +1,75 @@
+@import "../base/mixins";
+
+// INPUT
+
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+
+.input-group {
+  position: relative;
+}
+
+.input-label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #474A56;
+  margin: 0 0 6px 0;
+}
+
+.input {
+  height: 48px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #4F4F4F;
+  background: transparent;
+  width: 100%;
+  z-index: 3;
+  opacity: 1;
+  transition: all 0.2s ease;
+  padding: 16px 15px;
+
+  @media (max-width: 576px) {
+    max-width: 270px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &:focus::placeholder {
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+}
+
+
+.input-icon {
+  &__copy {
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    right: 15px;
+    bottom: 12px;
+    background-image: url('../../assets/img/copy.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 5;
+    cursor: pointer;
+  }
+}
+
+.copy-input {
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 576px) {
+    padding: 16px 40px 15px 16px;
+  }
+}
