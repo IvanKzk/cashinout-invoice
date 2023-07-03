@@ -36,7 +36,7 @@ function copyToClipboard(textToCopy) {
   }
 }
 
-function copy(selector) {
+function copy(selector, btn_selector, success_icon_selector) {
   const copyText = document.querySelector(selector);
   try{
     copyText.focus();
@@ -50,4 +50,17 @@ function copy(selector) {
   if (copyValue.includes(' '))
     copyValue = copyValue.substring(0, copyValue.indexOf(' '))
   copyToClipboard(copyValue)
+  showCopied(btn_selector, success_icon_selector)
+}
+
+function showCopied(btn_selector, success_icon_selector) {
+  const copyBtn = document.querySelector(btn_selector);
+  const successIcon = document.querySelector(success_icon_selector);
+
+  copyBtn.style.display = 'none'
+  successIcon.style.display = 'unset'
+  setTimeout(() => {
+    copyBtn.style.display = 'unset'
+    successIcon.style.display = 'none'
+  }, 5000)
 }

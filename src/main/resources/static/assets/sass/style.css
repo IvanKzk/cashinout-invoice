@@ -457,6 +457,20 @@ button:disabled {
   cursor: pointer;
 }
 
+.input-icon__copied {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  right: 15px;
+  bottom: 12px;
+  background-image: url("../../assets/img/greenarrow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  z-index: 5;
+  cursor: pointer;
+}
+
 .copy-input {
   max-width: 500px;
   overflow: hidden;

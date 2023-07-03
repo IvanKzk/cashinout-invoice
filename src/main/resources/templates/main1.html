@@ -43,7 +43,7 @@
                                         <span>[[${order_id}]]</span>
                                     </div>
                                 </div>
-                                <div class="invoice__item">
+                                <div th:if="${invoice_type != 'reusable'}" class="invoice__item">
                                     <div class="invoice__name">
                                         <span>Already paid: </span>
                                     </div>

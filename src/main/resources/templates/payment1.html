@@ -32,8 +32,9 @@
                             <div th:if="${selected_curr_amount}" class="payment__amount">
                                 <div class="input-wrap">
                                     <div class="input-group">
-                                        <input id="input-icon__copy2" type="text" class="input" th:attr="value=|${selected_curr_amount} ${selected_curr}|">
-                                        <i onmousedown="copy('#input-icon__copy2')" class="input-icon__copy"></i>
+                                        <input id="input__copy2" type="text" class="input" th:attr="value=|${selected_curr_amount} ${selected_curr}|">
+                                        <i id="icon__copy2" onmousedown="copy('#input__copy2', '#icon__copy2','#icon__copied2')" class="input-icon__copy"></i>
+                                        <i id="icon__copied2" class="input-icon__copied" style="display: none;"></i>
                                     </div>
                                 </div>
                             </div>
@@ -44,8 +45,9 @@
                                             <span th:if="${selected_curr_amount}">to this [[${selected_curr}]] address:</span>
                                             <span th:unless="${selected_curr_amount}">[[${selected_curr}]] address:</span>
                                         </div>
-                                        <input id="input-icon__copy1" type="text" class="input copy-input" th:attr="value=|${selected_curr_address}|">
-                                        <i onmousedown="copy('#input-icon__copy1')"  class="input-icon__copy"></i>
+                                        <input id="input__copy1" type="text" class="input copy-input" th:attr="value=|${selected_curr_address}|">
+                                        <i id="icon__copy1"  onmousedown="copy('#input__copy1','#icon__copy1', '#icon__copied1')"  class="input-icon__copy"></i>
+                                        <i id="icon__copied1" class="input-icon__copied" style="display: none;"></i>
                                     </div>
                                 </div>
                             </div>
